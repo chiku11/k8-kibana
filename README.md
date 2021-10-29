@@ -11,7 +11,9 @@ kubectl apply -f kibana-service.yaml
 ```
 
 # Deploy FluentD DaemonSet
+```
 kubectl apply -f fluentd-daemonset.yaml
+```
 
 # Doc
 https://coralogix.com/blog/kubernetes-logging-with-elasticsearch-fluentd-and-kibana/
