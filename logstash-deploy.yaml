@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logstash
+spec:
+  selector:
+    matchLabels:
+      app: logstash
+  template:
+    metadata:
+      labels:
+        app: logstash
+    spec:
+      containers:
+      - name: logstash
+        image: logstash:7.14.2
+        ports:
+        - containerPort: 5044
+        volumeMounts:
+          - mountPath: /usr/share/logstash/pipeline/
+            name: logstash-pipeline
+        command:
+          - logstash
+      volumes:
+        - name: logstash-pipeline
+          configMap:
+            name: logstash-pipeline
+            items:
+            - key: logstash.conf
+              path: logstash.conf
